@@ -32,22 +32,30 @@ const Login = () => {
               <div className="space-y-4">
                 <div className='space-y-2'>
                     <label className="font-semibold" htmlFor="Nombre_Usuario">Nombre</label>
-                    <input type="text" placeholder="Tu nombre" id='Nombre_Usuario' className="w-full p-2 rounded-lg border"/>
+                    <input type="text" placeholder="Tu nombre" id='Nombre_Usuario' className="w-full p-2 rounded-lg border"
+                    {...register('Nombre_Usuario', {required: true})}
+                    />
                 </div>
 
                 <div className='space-y-2'>
                     <label className="font-semibold" htmlFor="Correo_Electronico">Correo Electronico</label>
-                    <input type="text" id='Correo_Electronico' placeholder="Tu correo electronico" className="w-full p-2 rounded-lg border"/>
+                    <input type="text" id='Correo_Electronico' placeholder="Tu correo electronico" className="w-full p-2 rounded-lg border"
+                    {...register('Corrreo_Electronico', {required: true})}
+                    />
                 </div>
 
                 <div className='space-y-2'>
                     <label className="font-semibold" htmlFor="Contrasena">Contraseña</label>
-                    <input type="text" id='Contrasena' placeholder="**********" className="w-full p-2 rounded-lg border"/>
+                    <input type="text" id='Contrasena' placeholder="**********" className="w-full p-2 rounded-lg border"
+                    {...register('Contrasena', {required: true})}
+                    />
                 </div>
 
                 <div className='space-y-2'>
                     <label className="font-semibold" htmlFor="Numero_Telefonico_Movil">Telefono</label>
-                    <input type="text" id='Numero_Telefonico_Movil' placeholder="776113****" className="w-full p-2 rounded-lg border"/>
+                    <input type="text" id='Numero_Telefonico_Movil' placeholder="776113****" className="w-full p-2 rounded-lg border"
+                    {...register('Numero_Telefonico_Movil', {required: true})}
+                    />
                 </div>
               </div>
 
