@@ -1,10 +1,14 @@
 import React from "react"
+import { Route, Routes } from "react-router"
+import Home from "./views/Home"
 
 function App() {
 
   return (
     <>
-      <div className="text-3xl font-bold">Hola radilogia e imagen</div>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+      </Routes>
     </>
   )
 }
