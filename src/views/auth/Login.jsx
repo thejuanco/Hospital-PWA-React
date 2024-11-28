@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
+    const { signIn } = useAuth();
 
     const {
         register,
@@ -11,9 +14,18 @@ const Login = () => {
         reset
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
-        reset();
+    const onSubmit = async (data) => {
+        const {Nombre_Usuario} = data;
+        try {
+            const url = 'https://privilegecare-deploy-gqmt.onrender.com/login/'
+            const response = await axios.post(url, data);
+            const token = response.data
+            localStorage.setItem("token", token)
+            localStorage.setItem('nombre_usuario', Nombre_Usuario)
+            signIn(token);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
   return (
