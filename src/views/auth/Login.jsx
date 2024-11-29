@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
     const { signIn } = useAuth();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -23,6 +25,7 @@ const Login = () => {
             localStorage.setItem("token", token)
             localStorage.setItem('nombre_usuario', Nombre_Usuario)
             signIn(token);
+            navigate("/dashboard")
         } catch (error) {
             console.log(error);
         }
