@@ -1,8 +1,14 @@
 import React from 'react'
+import Navbar from '../../components/form/Navbar'
 
 const Register = () => {
   return (
-    <div>Register</div>
+    <>
+      <Navbar/>
+      <div>
+        <h1>Register</h1>
+      </div>
+    </>
   )
 }
 
