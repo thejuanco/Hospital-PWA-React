@@ -17,6 +17,10 @@ const Home = () => {
             </p>
           </div>
           <Services />
+          <div>
+            <h1 className='text-4xl text-center font-bold'>Por qué elegir nuestro departamento</h1>
+            <p className='text-center text-gray-600 mt-4 text-xl'>Nos dedicamos a proporcionar diagnósticos precisos y atención de calidad con la última tecnología en imagen médica.</p>
+          </div>
           </div>
         </div>
       </>

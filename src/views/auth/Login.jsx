@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/AuthContext';
+import Navbar from '../../components/form/Navbar';
 
 const Login = () => {
     const { signIn } = useAuth();
@@ -34,6 +35,7 @@ const Login = () => {
   return (
     <>
       <div>
+        <Navbar />
         <div className="flex justify-center items-center">
           <div className="mt-16 md:w-1/4 sm:w-1/2 sm:m-10">
             <h1 className="text-black font-semibold text-2xl">
