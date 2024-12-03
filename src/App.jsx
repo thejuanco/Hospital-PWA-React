@@ -8,6 +8,8 @@ import Register from "./views/auth/Register"
 import ForgotPass from "./views/auth/ForgotPass"
 
 import Dashboard from "./views/home/Dashboard"
+import Estudios from "./components/home/Estudios"
+import ResultadosEstudios from "./components/home/ResultadosEstudios"
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -18,6 +20,8 @@ function App() {
         {isAuthenticated ? (
           <>
             <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/dashboard/estudios" element={<Estudios/>}/>
+            <Route path="/dashboard/resultados-estudios" element={<ResultadosEstudios/>}/>
           </>
         ) : (
           <>
