@@ -7,14 +7,16 @@ import ResultadosEstudios from '../../components/home/ResultadosEstudios';
 
 const Dashboard = () => {
   return (
-    <>
-        <Navbar />
+    <div className="flex flex-col h-screen">
+      <Navbar />
+      <div className="flex flex-grow">
         <Sidebar />
-        <div className='p-4 sm:ml-64'>
+        <div className="flex-grow p-4 bg-gray-50">
           <Estudios />
-          <ResultadosEstudios/>
+          <ResultadosEstudios />
         </div>
-    </>
+      </div>
+    </div>
   )
 }
 
