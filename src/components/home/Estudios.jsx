@@ -1,12 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import useAxios from '../../api/api.auth';
+import Sidebar from './Sidebar'
 
 const Estudios = () => {
+
+  const intanceAPI = useAxios();
+
+  useEffect(() => {
+    const getStudios = async () => {
+      try {
+        const result = await intanceAPI.get('/estudios')
+        console.log(result.data)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    getStudios();
+  }, [])
+
   return (
-    <>
-        <div className='p-4 rounded-lg'>
-            <h1>Estudios</h1>
-            <p>Aquí podrás encontrar información sobre los estudios que hemos realizado en el hospital.</p>
-            <button className='bg-purple-500 text-white rounded-lg px-4 py-2 font-bold'>Ver más</button>
+    <>  
+      <Sidebar />
+        <div className='p-4 sm:ml-64'>
+            <div>
+              Desde estudios
+            </div>
         </div>
     </>
   )
