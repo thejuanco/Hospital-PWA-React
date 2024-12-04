@@ -19,7 +19,8 @@ function App() {
       <Routes>
         {isAuthenticated ? (
           <>
-            <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route index path="/dashboard" element={<Dashboard/>}/>
             <Route path="/dashboard/estudios" element={<Estudios/>}/>
             <Route path="/dashboard/resultados-estudios" element={<ResultadosEstudios/>}/>
           </>
