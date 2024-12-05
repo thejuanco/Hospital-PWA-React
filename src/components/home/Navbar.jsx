@@ -4,7 +4,7 @@ const Navbar = () => {
     const nameUser = localStorage.getItem('nombre_usuario')
     
     return (
-      <nav className="bg-white shadow-md px-6 py-4 flex items-center justify-between">
+      <nav className="p-4 sm:ml-64 bg-white shadow-md px-6 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
             R
