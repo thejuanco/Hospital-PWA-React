@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAxios from "../../api/api.auth";
+import UrgencyChart from "./UrgencyChart";
 
 const Home = () => {
 
@@ -70,6 +71,11 @@ const Home = () => {
           </tbody>
         </table>
       </div>
+    </div>
+    <div>
+    <div className="mt-6">
+            <UrgencyChart studios={studios} />
+        </div>
     </div>
     </>
   );

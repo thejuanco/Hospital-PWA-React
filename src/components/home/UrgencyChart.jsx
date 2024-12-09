@@ -37,7 +37,12 @@ const UrgencyChart = ({ studios }) => {
   }, [studios]);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4">
+    <div className="bg-white shadow-md rounded-lg p-4"
+      style={{
+        maxWidth: "350px", // Ancho máximo
+        margin: "0 auto", // Centrar en la pantalla
+      }}
+    >
       <h2 className="font-semibold text-xl mb-4">Niveles de Urgencia</h2>
       {chartData.labels ? (
         <Pie data={chartData} />
