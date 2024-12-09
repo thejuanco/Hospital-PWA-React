@@ -76,11 +76,11 @@ const Home = () => {
           </table>
         </div>
       </div>
-      <div>
-        <div className="mt-6">
+      <div className="flex flex-row justify-between items-center mt-6 gap-4">
+        <div className="flex-1 min-w-[300px]">
           <UrgencyChart studios={studios} />
         </div>
-        <div>
+        <div className="flex-1 min-w-[400px]">
           <StudyStatusChart />
         </div>
       </div>
