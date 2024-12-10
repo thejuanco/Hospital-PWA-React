@@ -95,8 +95,10 @@ const Estudios = () => {
                 >
                   <p className="font-semibold text-lg">{estudio.Tipo}</p>
                   <p>{estudio.Observaciones}</p>
-                  <p>{estudio.Nivel_Urgencia}</p>
+                  <p>Nivel Urgencia: {estudio.Nivel_Urgencia}</p>
                   <p>{estudio.Dirigido_A}</p>
+                  <p>{estudio.Total_Costo}</p>
+                  <p>{estudio.Estatus}</p>
                   <div className="flex justify-between mx-10 py-1 mt-2">
                     <button
                       className="bg-gray-900 text-white font-semibold px-10 rounded-full"
@@ -117,7 +119,7 @@ const Estudios = () => {
           isOpen={isModalOpen}
           onRequestClose={closeModal}
           contentLabel="Editar Estudio"
-          className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto mt-20"
+          className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto"
           overlayClassName="bg-black bg-opacity-50 fixed inset-0 flex justify-center items-center"
         >
           <h2 className="text-2xl font-bold mb-6">Editar Estudio</h2>
@@ -197,7 +199,7 @@ const Estudios = () => {
                 <button
                   type="button"
                   onClick={handleSave}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                  className="bg-gray-900 text-white px-4 py-2 rounded-lg"
                 >
                   Guardar
                 </button>
