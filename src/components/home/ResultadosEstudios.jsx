@@ -45,14 +45,25 @@ const ResultadosEstudios = () => {
 
   const handleCreateResultado = async () => {
     try {
-      const response = await intanceAPI.post("/resultados_estudios", formData);
+      const response = await intanceAPI.post("/resultados_estudios/", formData);
       setResultados((prev) => [...prev, response.data]);
+      console.log(response.data)
       closeCreateModal();
     } catch (error) {
       console.log("Error al crear el resultado:", error);
     }
   };
 
+  const handleDelete = async (resultado) => {
+    try {
+      await intanceAPI.delete(`/resultados_estudios/${resultado.id}`);
+      setResultados((prev) => prev.filter((r) => r.id !== resultado.id));
+      console.log(`Resultado con id ${resultado.id} eliminado con éxito.`);
+    } catch (error) {
+      console.error("Error al eliminar el resultado de estudio:", error);
+    }
+  };
+  
   return (
     <>
       <Sidebar />
@@ -100,7 +111,9 @@ const ResultadosEstudios = () => {
                     <button className="bg-gray-900 text-white font-semibold px-10 rounded-full">
                       Editar
                     </button>
-                    <button className="border font-semibold px-10 rounded-full">
+                    <button className="border font-semibold px-10 rounded-full"
+                      onClick={() => handleDelete(resultado)}
+                    >
                       Eliminar
                     </button>
                   </div>
