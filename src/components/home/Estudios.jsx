@@ -59,6 +59,15 @@ const Estudios = () => {
     }
   };
 
+  const handleDelete = async (estudio) => {
+    
+    try {
+      await intanceAPI.delete(`/estudios/${estudio.id}`);
+      setEstudios((prev) => prev.filter((e) => e.id !== estudio.id));
+    } catch (error) {
+      console.error("Error al eliminar el estudio:", error);
+    }
+  };
 
   return (
     <>
@@ -106,7 +115,9 @@ const Estudios = () => {
                     >
                       Editar
                     </button>
-                    <button className="border font-semibold px-10 rounded-full">
+                    <button className="border font-semibold px-10 rounded-full"
+                      onClick={() => handleDelete(estudio)}
+                    >
                       Eliminar
                     </button>
                   </div>
