@@ -7,6 +7,7 @@ import Modal from "react-modal";
 const ResultadosEstudios = () => {
   const [resultados, setResultados] = useState([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     Paciente_ID: 0,
     Personal_Medico_ID: 0,
@@ -18,6 +19,7 @@ const ResultadosEstudios = () => {
     Fecha_Registro: new Date().toISOString(),
     Fecha_Actualizacion: new Date().toISOString(),
   });
+  const [selectedResultado, setSelectedResultado] = useState(null);
   const intanceAPI = useAxios();
 
   useEffect(() => {
@@ -41,6 +43,34 @@ const ResultadosEstudios = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const openEditModal = (resultado) => {
+    setSelectedResultado(resultado);
+    setFormData(resultado); // Pre-cargar los datos en el formulario
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+    setSelectedResultado(null);
+  };
+
+  const handleEditResultado = async () => {
+    try {
+      const response = await intanceAPI.put(
+        `/resultados_estudios/${selectedResultado.id}`,
+        formData
+      );
+      setResultados((prev) =>
+        prev.map((resultado) =>
+          resultado.id === selectedResultado.id ? response.data : resultado
+        )
+      );
+      closeEditModal();
+    } catch (error) {
+      console.log("Error al editar el resultado:", error);
+    }
   };
 
   const handleCreateResultado = async () => {
@@ -108,7 +138,9 @@ const ResultadosEstudios = () => {
                   <p>{resultado.Estatus}</p>
                   <p>{resultado.Paciente_ID}</p>
                   <div className="flex justify-between mx-10 py-1 mt-2">
-                    <button className="bg-gray-900 text-white font-semibold px-10 rounded-full">
+                    <button className="bg-gray-900 text-white font-semibold px-10 rounded-full"
+                      onClick={() => openEditModal(resultado)}
+                    >
                       Editar
                     </button>
                     <button className="border font-semibold px-10 rounded-full"
@@ -226,6 +258,76 @@ const ResultadosEstudios = () => {
               </button>
             </div>
           </form>
+        </Modal>
+
+        <Modal
+          isOpen={isEditModalOpen}
+          onRequestClose={closeEditModal}
+          contentLabel="Editar Resultado de Estudio"
+          className="bg-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto"
+          overlayClassName="bg-black bg-opacity-50 fixed inset-0 flex justify-center items-center"
+        >
+          <h2 className="text-2xl font-bold mb-6">Editar Resultado de Estudio</h2>
+          {selectedResultado && (
+            <form>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="mb-4">
+                  <label className="block font-semibold">Folio</label>
+                  <input
+                    type="text"
+                    name="Folio"
+                    value={formData.Folio || ""}
+                    onChange={handleChange}
+                    className="border rounded-lg w-full px-4 py-2"
+                  />
+                </div>
+                <div className="mb-4 col-span-2">
+                  <label className="block font-semibold">Resultados</label>
+                  <textarea
+                    name="Resultados"
+                    value={formData.Resultados || ""}
+                    onChange={handleChange}
+                    className="border rounded-lg w-full px-4 py-2 h-24"
+                  />
+                </div>
+                <div className="mb-4 col-span-2">
+                  <label className="block font-semibold">Observaciones</label>
+                  <textarea
+                    name="Observaciones"
+                    value={formData.Observaciones || ""}
+                    onChange={handleChange}
+                    className="border rounded-lg w-full px-4 py-2 h-18"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block font-semibold">Estatus</label>
+                  <input
+                    type="text"
+                    name="Estatus"
+                    value={formData.Estatus || ""}
+                    onChange={handleChange}
+                    className="border rounded-lg w-full px-4 py-2"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end mt-6">
+                <button
+                  type="button"
+                  onClick={closeEditModal}
+                  className="px-4 py-1 mr-4 rounded-lg border"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  onClick={handleEditResultado}
+                  className="bg-gray-900 text-white px-4 py-2 rounded-lg"
+                >
+                  Guardar Cambios
+                </button>
+              </div>
+            </form>
+          )}
         </Modal>
       </div>
     </>
